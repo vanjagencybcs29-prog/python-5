@@ -1,0 +1,50 @@
+class ElectricityBill:
+    def __init__(self, name, units):
+        # Member data
+        self.name = name
+        self.units = units
+        self.amount = 0.0
+
+    def calculate_bill(self):
+        u = self.units
+
+        # Slab 1: 0 to 100 (Free)
+        if u <= 100:
+            self.amount = 0.0
+
+        # Slab 2: 101 to 200 (1.5 per unit)
+        elif u <= 200:
+            self.amount = (u - 100) * 1.5
+
+        # Slab 3: 201 to 300 (2.5 per unit)
+        elif u <= 300:
+            # First 100 free + next 100 at 1.5 + remaining at 2.5
+            self.amount = (100 * 1.5) + (u - 200) * 2.5
+
+        # Slab 4: 301 to 400 (4 per unit)
+        elif u <= 400:
+            # 100 free + 100 at 1.5 + 100 at 2.5 + remaining at 4
+            self.amount = (100 * 1.5) + (100 * 2.5) + (u - 300) * 4
+
+        # Slab 5: Above 400 (Example: 6 per unit)
+        else:
+            self.amount = (100 * 1.5) + (100 * 2.5) + (100 * 4) + (u - 400) * 6
+
+    def show_invoice(self):
+        print("\n--- Electricity Bill ---")
+        print("Customer Name: ", self.name)
+        print("Units Used:    ", self.units)
+        print("Total Bill:    ", "Rs.", self.amount)
+
+
+# --- Main Program ---
+# Get details from the user
+c_name = input("Enter Customer Name: ")
+c_units = float(input("Enter Units Consumed: "))
+
+# Create object
+bill_obj = ElectricityBill(c_name, c_units)
+
+# Calculate and Show
+bill_obj.calculate_bill()
+bill_obj.show_invoice()
