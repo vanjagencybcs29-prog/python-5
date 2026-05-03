@@ -1,0 +1,34 @@
+class Employee:
+    def __init__(self, name, basic, allowances, deductions):
+        # Member data
+        self.name = name
+        self.basic = basic
+        self.allowances = allowances
+        self.deductions = deductions
+
+    def calculate_salary(self):
+        # Math logic
+        gross = self.basic + self.allowances
+        net = gross - self.deductions
+
+        print("\n--- Salary Slip ---")
+        print("Employee Name:", self.name)
+        print("Basic Salary: ", self.basic)
+        print("Allowances:   ", self.allowances)
+        print("Deductions:   ", self.deductions)
+        print("------------------")
+        print("Gross Salary: ", gross)
+        print("Net Salary:   ", net)
+
+
+# Get details from the user
+n = input("Enter Name: ")
+b = float(input("Enter Basic Salary: "))
+a = float(input("Enter Total Allowances: "))
+d = float(input("Enter Total Deductions: "))
+
+# Create object
+emp_obj = Employee(n, b, a, d)
+
+# Call member function
+emp_obj.calculate_salary()
